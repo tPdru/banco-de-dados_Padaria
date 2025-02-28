@@ -48,10 +48,11 @@ descricao varchar(100),
 quantidade int,
 preco decimal(9,2),
 dataVal datetime,
-lote char(10),
+lote char(10) unique,
 codForn int not null,
 primary key(codProd),
 foreign key(codForn)references tbFornecedores(codForn));
+
 
 
 create table tbvendas(
@@ -67,6 +68,7 @@ primary key (codVend),
 foreign key (codProd)references tbProdutos(codProd),
 foreign key (codUsu)references tbUsuarios(codUsu),
 foreign key (codCli)references tbClientes(codCli));
+
 
 -- visualizando as tabelas
 show tables;
@@ -91,6 +93,7 @@ insert into tbClientes(nome,cpf,email)
 	values('Manu Ribeiro', '555.666.777-88');*/
 
 insert into tbFornecedores(nome,email,telcel) values('Verduras SA', 'sac@verduras.com.br', '94002-8922');
+insert into tbFornecedores(nome,email,telcel) values('Armarinho Fernandes', 'amarinho@ferandes.com.br', '94002-8955');
 
 
 
@@ -100,7 +103,25 @@ insert into tbFuncionarios(nome,email,telcel,dataNasc,salario,sexo)values('Affon
 
 insert into tbUsuarios(nome,senha,codFunc)values('paixao.aff@gamil.com','12345',1);
 insert into tbUsuarios(nome,senha,codFunc)values('paixao.affonsa@gamil.com','54321',2);
+
+
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Abacaxi',50,4.35,'2025-04-06','VSA100000',1);
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Caneta azul',75,1.50,'2028-04-06','AMF100000',2);
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Maça',50,2.50,'2025-05-06','VSA200000',1);
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Caderno',25,15.99,'2030-04-06','AMF200000',2);
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Laranja',50,1.35,'2025-07-06','VSA300000',1);
+insert into tbProdutos(descricao, quantidade,preco,dataVal,lote,codForn)values('Estojo',30,15.00,'2030-04-06','AMF300000',2);
+
+insert into tbvendas(dataVend,horaVend,quantidade,valor,codProd,codUsu,codCli)values('2025-02-28','19:30:25',10,13.50,5,1,2);
+insert into tbvendas(dataVend,horaVend,quantidade,valor,codProd,codUsu,codCli)values('2025-02-28','19:30:25',2,3.00,2,2,2);
+insert into tbvendas(dataVend,horaVend,quantidade,valor,codProd,codUsu,codCli)values('2025-02-28','19:30:25',10,159.90,4,1,1);
+insert into tbvendas(dataVend,horaVend,quantidade,valor,codProd,codUsu,codCli)values('2025-02-28','19:30:25',5,21.75,1,2,1);
+
+
 -- vizualizando os registros nas tabelas
 select * from tbClientes;
 select * from tbFornecedores;
 select * from tbFuncionarios;
+select * from tbProdutos;
+select * from tbUsuarios;
+select * from tbvendas;
